@@ -31,3 +31,13 @@ ls -al | grep .dotfiles | awk9 | xargs rm -r
 
 - you may need to install zsh from your own package manger.(apt-get install zsh)
 - powerline font install: https://github.com/powerline/fonts
+
+### About tmux
+
+- Key combination prefix is Ctrl-a no Ctrl-b
+- Use Ctrl-a, Ctrl-a to switch window
+- Use Ctrl-a, a to control nested sessions
+- Enalbed vim mode
+- You can resize pane by mouse drag
+- If you want select the raw texts, use shift + mouse.
+- For more informations, please check .tmux.conf
