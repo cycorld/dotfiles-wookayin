@@ -18,6 +18,9 @@ alias tmuxl='tmux list-sessions'
 # tmuxa <session> : attach to <session> (force 256color and detach others)
 alias tmuxa='tmux -2 attach-session -d -t'
 
+# I am lazy, yeah
+alias t='tmuxa'
+
 # }}}
 
 
@@ -35,9 +38,14 @@ alias gsu='gs -u'
 # }}}
 
 
-# Other Stuffs
+# Python ======================================= {{{
 alias ipy='ipython'
 alias ipynb='ipython notebook'
+
+# pip install nose, rednose
+alias nt='NOSE_REDNOSE=1 nosetests -v'
+
+# }}}
 
 
 # Some useful aliases for CLI scripting (pipe, etc)
@@ -52,7 +60,7 @@ alias awk8="awk '{print \$8}'"
 alias awk9="awk '{print \$9}'"
 alias awklast="awk '{print \$\(NF\)}'"
 
-# etc..
-
-alias julia='/Applications/Julia-0.3.7.app/Contents/Resources/julia/bin/julia'
+# Etc ======================================= {{{
 alias vi=vim
+
+# }}}

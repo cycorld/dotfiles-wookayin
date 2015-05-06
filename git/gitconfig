@@ -1,9 +1,10 @@
 # vim: set ft=gitconfig:
+# @seealso https://www.kernel.org/pub/software/scm/git/docs/git-config.html
 
 [include]
 	# include external gitconfig file (requires git 1.7.10+)
 	# typically, user.name and user.email is configured.
-	path = ~/.gitconfig_secret
+	path = ~/.gitconfig.secret
 
 [core]
 	excludesfile = ~/.gitignore
@@ -38,6 +39,7 @@
 
 	# commit
 	ci = commit
+	amend = commit --amend
 
 [color]
 	status = auto
@@ -45,6 +47,13 @@
 	branch = auto
 	interactive = auto
 	ui = auto
+
+[diff]
+	# --no-prefix (for git diff, git show) such as 'a/' 'b/' blah
+	noprefix = true
+
+	# Detect copies as well as renames
+	renames = copies
 
 [format]
 	pretty = fuller

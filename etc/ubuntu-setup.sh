@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# from @wookayin https://github.com/wookayin/dotfiles
-
 install_essential_packages() {
 	local -a packages; packages=( \
 		build-essential \
 		vim zsh curl \
 		python-software-properties software-properties-common \
-		cmake cmake-data \
+		cmake cmake-data ctags \
 		terminator htop \
 		silversearcher-ag \
 		openssh-server mosh \

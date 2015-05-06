@@ -143,6 +143,10 @@ imap <down> <c-o>gj
 " Ignore errornous input in Mac OS X
 imap <D-space> <Nop>
 
+" <Ctrl-Space> invokes <C-X><C-O> (omni-completion)
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-x><C-o>
+
 " window navigation
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -175,21 +179,46 @@ nnoremap 9 9gt
 vnoremap < <gv
 vnoremap > >gv
 
-" [F5] Make
+
+" [F5] Make and Build
+" smartly dispatch according to filetype
+function! s:run_make(bang)
+	let l:silent_filetypes = ['tex', 'pandoc']
+	" (1) bang given, force background
+	if a:bang == "!" | Make!
+	" (2) for specified filetypes, use background
+	elseif index(l:silent_filetypes, &filetype) >= 0 | Make!
+	" (3) otherwise, make with foreground shown
+	else | Make
+	end
+endfunction
+command! -nargs=0 -bang RunMake call s:run_make("<bang>")
+
 if isdirectory(expand("~/.vim/plugged/vim-dispatch"))
 	" use vim-dispatch if exists
-	map <F5> <ESC>:w<CR>:Make<CR>
-	imap <F5> <ESC>:w<CR>:Make<CR>
+
+	" <F5>: run make, asynchronously or split windows (dispatch)
+	map  <F5> <ESC>:w<CR>:RunMake<CR>
+	imap <F5> <ESC>:w<CR>:RunMake<CR>a
+
+	" <leader-F5>: run make with visible progress (split window in tmux)
+	map  <leader><F5> <ESC>:w<CR>:RunMake!<CR>
+	imap <leader><F5> <ESC>:w<CR>:RunMake!<CR>a
+
+	" <F6>: show quickfix window (scroll bottom)
+	map  <F6> :Copen<CR>G
+	imap <F6> <ESC>:Copen<CR>G:wincmd w<CR>a
 else
 	" otherwise, fallback to default make
 	map <F5> <ESC>:w<CR>:make!<CR>
-	imap <F5> <ESC>:w<CR>:make!<CR>
+	imap <F5> <ESC>:w<CR>:make!<CR>a
 endif
 
 " [F4] Next Error [Shift+F4] Previous Error
 map <F4> <ESC>:cn<CR>
 map [26~ <ESC>:cp<CR>
 map [1;2S <ESC>:cp<CR>
+map [29~ <ESC>:cp<CR>
 
 " [F2] save
 imap <F2> <ESC>:w<CR>
@@ -287,18 +316,14 @@ highlight CursorLine	cterm=none
 
 " show cursorline for active window only
 augroup NrHighlight
-  autocmd!
-  autocmd BufEnter * setlocal cursorline
-  autocmd BufLeave * setlocal nocursorline
+	autocmd!
+	autocmd BufEnter * setlocal cursorline
+	autocmd BufLeave * setlocal nocursorline
 augroup END
 
 " IDE settings
 filetype plugin on
 filetype indent on
-
-" Use spaces instead of tab in python codes
-au FileType python set expandtab
-au FileType tex set expandtab
 
 " filetype detections
 au BufRead,BufNewFile /etc/nginx/* if &ft == '' | setfiletype nginx | endif
@@ -311,7 +336,8 @@ fun! StripTrailingWhitespaces()
 	call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,javascript,html,ruby,python,tex autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,javascript,html,ruby,python,pandoc,tex
+	\ autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
 
 " highlight trailing whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -326,6 +352,13 @@ autocmd BufWinLeave * call clearmatches()
 " better popup menu colors (instead of dark black)
 highlight Pmenu ctermfg=black ctermbg=yellow
 highlight PmenuSel ctermfg=red ctermbg=white gui=bold
+
+" http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+function! ShowSyntaxGroup()
+	echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+		\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+		\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+endfunction
 
 """""""""""""""""""""""""""
 " 4. GUI Options
@@ -373,10 +406,10 @@ let g:startify_bookmarks = [
 	\ ]
 
 let g:startify_skiplist = [
-    \ 'COMMIT_EDITMSG',
-    \ $VIMRUNTIME .'/doc',
-    \ 'plugged/.*/doc',
-    \ 'bundle/.*/doc',
+	\ 'COMMIT_EDITMSG',
+	\ $VIMRUNTIME .'/doc',
+	\ 'plugged/.*/doc',
+	\ 'bundle/.*/doc',
 	\ ]
 " }}}
 
@@ -404,8 +437,8 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_z_nerdtree = 1
 let g:ctrlp_extensions = ['Z', 'F']
 
-nnoremap <leader>z :CtrlPZ<CR>
-nnoremap <leader>f :CtrlPF<CR>
+nnoremap <leader>Z :CtrlPZ<CR>
+nnoremap <leader>F :CtrlPF<CR>
 
 command! Z CtrlPZ
 command! F CtrlPF
@@ -425,13 +458,16 @@ map <Leader>N <plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tabs_open_on_console_startup = 0
 let g:nerdtree_tabs_open_on_gui_startup = 0
 
+" filter out some files, by extension
+let NERDTreeIgnore = ['\.pyc$', '\.class$', '\.o$']
+
 " }}}
 
 
 " Easymotion {{{
 
-" Trigger <,F> to launch easymotion global jump
-nmap <leader>F <Plug>(easymotion-s)
+" Trigger <,f> to launch easymotion global jump
+nmap <leader>f <Plug>(easymotion-s)
 
 " backward, forward search is mapped to easymotion.
 map  / <Plug>(easymotion-sn)
