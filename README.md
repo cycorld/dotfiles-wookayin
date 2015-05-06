@@ -41,3 +41,8 @@ ls -al | grep .dotfiles | awk9 | xargs rm -r
 - You can resize pane by mouse drag
 - If you want select the raw texts, use shift + mouse.
 - For more informations, please check .tmux.conf
+
+### About rails
+
+- Will update
+- http://www.sitepoint.com/effective-rails-development-vim
