@@ -6,6 +6,11 @@ This dotfiles are from @wookayin
 
 ## Installation
 
+### Requisite
+
+- tmux
+- zsh (>= 4.1.17)
+
 ### Clone and Install!
 
 ```bash
