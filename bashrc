@@ -94,3 +94,7 @@ if [[ -n "$TMUX" ]]; then
 else
   export TERM="xterm-256color"
 fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+export ANDROID_HOME=/usr/local/opt/android-sdk

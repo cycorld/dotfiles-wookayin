@@ -8,7 +8,7 @@ This dotfiles are from @wookayin
 
 ### Requisite
 
-- tmux
+- tmux (>= 1.9)
 - zsh (>= 4.1.17)
 
 ### Clone and Install!

@@ -198,20 +198,20 @@ if isdirectory(expand("~/.vim/plugged/vim-dispatch"))
 	" use vim-dispatch if exists
 
 	" <F5>: run make, asynchronously or split windows (dispatch)
-	map  <F5> <ESC>:w<CR>:RunMake<CR>
-	imap <F5> <ESC>:w<CR>:RunMake<CR>a
+	map  <F5> <ESC>:w<CR>:!rake<CR>
+	imap <F5> <ESC>:w<CR>:!rake<CR>a
 
 	" <leader-F5>: run make with visible progress (split window in tmux)
-	map  <leader><F5> <ESC>:w<CR>:RunMake!<CR>
-	imap <leader><F5> <ESC>:w<CR>:RunMake!<CR>a
+	map  <leader><F5> <ESC>:w<CR>:!rake<CR>
+	imap <leader><F5> <ESC>:w<CR>:!rake<CR>a
 
 	" <F6>: show quickfix window (scroll bottom)
 	map  <F6> :Copen<CR>G
 	imap <F6> <ESC>:Copen<CR>G:wincmd w<CR>a
 else
 	" otherwise, fallback to default make
-	map <F5> <ESC>:w<CR>:make!<CR>
-	imap <F5> <ESC>:w<CR>:make!<CR>a
+	map <F5> <ESC>:w<CR>:!rake<CR>
+	imap <F5> <ESC>:w<CR>:!rake<CR>a
 endif
 
 " [F4] Next Error [Shift+F4] Previous Error
@@ -532,6 +532,9 @@ nnoremap <leader>G :GundoToggle<CR>
 
 " tagbar key mappings
 nnoremap <leader>T :TagbarToggle<CR>
+
+" Livedown - markdown preview
+nmap gm :LivedownToggle<CR>
 
 
 

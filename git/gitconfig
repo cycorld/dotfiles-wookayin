@@ -9,6 +9,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	pager = less -F
+	editor = vim
 
 [alias]
 	history = log --graph --pretty=format:'%C(yellow)%h%Creset \
@@ -36,6 +37,7 @@
 
 	# log
 	l = log --graph --decorate --pretty
+	g = log --graph --oneline --decorate --all --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %C(yellow)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 	# commit
 	ci = commit

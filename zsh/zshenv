@@ -95,3 +95,5 @@ export PATH="/Users/shastaky/anaconda/bin:$PATH"
 
 # if use ko.KR linux
 export LC_ALL='ko_KR.UTF-8'
+
+export ANDROID_HOME=/usr/local/opt/android-sdk
