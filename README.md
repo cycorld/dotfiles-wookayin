@@ -9,7 +9,7 @@ This dotfiles are from @wookayin
 ### Clone and Install!
 
 ```bash
-git clone --recursive https://github.com/cycorld/dotfiles.git ~/.dotfiles
+git clone --recursive https://github.com/cycorld/dotfiles-wookayin.git ~/.dotfiles
 cd ~/.dotfiles && python install.py
 ```
 
