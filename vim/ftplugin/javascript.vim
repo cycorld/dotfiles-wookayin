@@ -1,6 +1,6 @@
 " javascript.vim
 
 setlocal expandtab
-setlocal ts=4
-setlocal sw=4
-setlocal sts=4
+set ts=2
+set sw=2
+set sts=2

@@ -154,6 +154,12 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" Rspec
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
 " Tab navigations
 nnoremap <C-t>     :tabnew<CR>
 nnoremap <C-S-tab> :tabprevious<CR>
@@ -339,6 +345,8 @@ endfun
 
 autocmd FileType c,cpp,java,javascript,html,ruby,python,pandoc,tex
 	\ autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
+
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " highlight trailing whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -547,3 +555,5 @@ nmap gm :LivedownToggle<CR>
 if filereadable(expand("\~/.vimrc.local"))
 	source \~/.vimrc.local
 endif
+
+set expandtab

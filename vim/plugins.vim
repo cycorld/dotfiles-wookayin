@@ -32,6 +32,7 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'tomtom/tlib_vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'shime/vim-livedown'
+Plug 'thoughtbot/vim-rspec'
 
 " Syntax, Completion, Coding stuffs
 Plug 'rust-lang/rust.vim'
@@ -46,5 +47,7 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'mattn/emmet-vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'digitaltoad/vim-pug'
 
 call plug#end()
