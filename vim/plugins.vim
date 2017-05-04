@@ -2,7 +2,7 @@ call plug#begin('~/.vim/plugged')
 
 " General and Behaviour
 Plug 'flazz/vim-colorschemes'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 
 " Integration and Interfaces
@@ -40,6 +40,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'klen/python-mode'
 Plug 'davidhalter/jedi-vim'
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
 Plug 'briancollins/vim-jst'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
