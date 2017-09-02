@@ -50,4 +50,7 @@ Plug 'mattn/emmet-vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'digitaltoad/vim-pug'
 
+" Game
+Plug 'johngrib/vim-game-code-break'
+
 call plug#end()

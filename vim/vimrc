@@ -520,6 +520,9 @@ let g:pymode_rope = 0
 " however, jedi resets all the highlight :( - why?
 let g:pymode_run = 0
 
+" By default python-mode uses python 2 syntax checking. To enable python 3
+"let g:pymode_python = 'python3'
+
 " }}}
 
 
